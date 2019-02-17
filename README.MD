@@ -36,14 +36,32 @@ The container uses the following environment variables (theh bold ones are **req
  * DB_NAME: the name of the db that will be saved. Same value as DB_USER if not provided;
  * **DB_PASSWORD**: the password for the user.
 
+S3_SUPPORT
+----------
+
+S3 Endpoints are now supported! You need to provide the following env vars:
+
+ * S3_ACCESS_KEY_ID
+ * S3_SECRET_ACCESS_KEY
+ * S3_ENDPOINT_URL
+ * S3_BUCKET
+ 
+The entrypoint will check the existence of 'S3_ACESS_KEY_ID' and will proceed with s3 backup and backup_folder removal.
+
+The support is provided by the Minio Client, check the https://github.com/minio/mc for more details.
+
+The container was tested against a MinioServer and a DigitalOcean Space.
+
 ROADMAP
 -------
 
 The Following features mark the roadmap for a more usefull (Aka 1.0) version:
 
- * Support for S3 Backups with endpoint options (minio, do spaces, aws, etc);
  * DCron support for schedules;
  * Backup All Databases instead of just one.
+ * Send Job Status to Prometheus Gateway or Prometheus Aggregate Gateway.
+ * Json Logs;
+ * WebHooks.
 
 Author
 ------
