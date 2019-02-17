@@ -13,8 +13,10 @@ RUN cd mydumper && \
     make -j
 
 FROM alpine:3.6
-RUN apk add --no-cache mariadb-client-libs glib bash
+RUN apk add --no-cache mariadb-client-libs glib bash ca-certificates
 COPY --from=builder /usr/src/mydumper/mydumper /usr/bin/
 COPY --from=builder /usr/src/mydumper/myloader /usr/bin/
 COPY docker-entrypoint.sh /entrypoint
+ADD https://dl.minio.io/client/mc/release/linux-amd64/mc /usr/local/bin/mc
+RUN chmod +x /usr/local/bin/mc
 ENTRYPOINT ["bash","-x","/entrypoint"]
