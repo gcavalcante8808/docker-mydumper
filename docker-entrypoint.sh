@@ -9,7 +9,7 @@ setup_mc() {
 
 sync_folder() {
   echo "Trying to Sync ${BACKUP_FOLDER}"
-  /usr/local/bin/mc --config-dir /tmp/mc.config mirror "${BACKUP_FOLDER}" "default/${S3_BUCKET}/"
+  /usr/local/bin/mc --config-dir /tmp/mc.config mirror "${BACKUP_FOLDER}" "default/${S3_BUCKET}/${DB_NAME}/${BACKUP_FOLDER}"
 }
 
 if [[ -z "${DB_HOST}" ]]; then
